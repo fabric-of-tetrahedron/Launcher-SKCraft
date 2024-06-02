@@ -29,17 +29,17 @@ public class LocaleEncodingControl extends ResourceBundle.Control {
 
 		BufferedInputStream bis = new BufferedInputStream(is);
 
-		// Let's do the timewalk
-		boolean isUtf8;
-		bis.mark(3);
-		{
-			byte[] buf = new byte[3];
-			readFully(bis, buf);
-
-			// the BOM is 0xEF,0xBB,0xBF
-			isUtf8 = buf[0] == (byte) 0xEF && buf[1] == (byte) 0xBB && buf[2] == (byte) 0xBF;
-		}
-		bis.reset();
+		// Let's not do the timewalk
+		boolean isUtf8=true;
+//		bis.mark(3);
+//		{
+//			byte[] buf = new byte[3];
+//			readFully(bis, buf);
+//
+//			// the BOM is 0xEF,0xBB,0xBF
+//			isUtf8 = buf[0] == (byte) 0xEF && buf[1] == (byte) 0xBB && buf[2] == (byte) 0xBF;
+//		}
+//		bis.reset();
 
 		if (isUtf8) {
 			log.info("Found UTF-8 locale file " + resourceName);

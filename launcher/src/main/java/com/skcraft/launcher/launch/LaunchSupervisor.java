@@ -9,6 +9,7 @@ package com.skcraft.launcher.launch;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.skcraft.concurrency.ObservableFuture;
 import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.Launcher;
@@ -39,7 +40,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.BiPredicate;
 import java.util.logging.Level;
 
-import static com.google.common.util.concurrent.MoreExecutors.sameThreadExecutor;
 import static com.skcraft.launcher.util.SharedLocale.tr;
 
 @Log
@@ -145,7 +145,7 @@ public class LaunchSupervisor {
             @Override
             public void onFailure(Throwable t) {
             }
-        });
+        }, MoreExecutors.directExecutor());
 
         // Watch the created process
         ListenableFuture<ProcessConsoleFrame> future = Futures.transform(
@@ -160,7 +160,7 @@ public class LaunchSupervisor {
             } catch (IOException e) {
                 log.log(Level.WARNING, "Failed to clean up " + extractDir.getAbsolutePath(), e);
             }
-        }, sameThreadExecutor());
+        }, MoreExecutors.directExecutor());
 
         // Hook up launch listener
         Futures.addCallback(future, new FutureCallback<ProcessConsoleFrame>() {

@@ -12,6 +12,8 @@ import lombok.extern.java.Log;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -43,13 +45,13 @@ public final class LauncherUtils {
         try {
             InputStream in = closer.register(clazz.getResourceAsStream(name));
             if (in != null) {
-                prop.load(in);
+                prop.load(new InputStreamReader(in, StandardCharsets.UTF_8));
                 String extraPath = System.getProperty(extraProperty);
                 if (extraPath != null) {
                     log.info("Loading extra properties for " +
                             clazz.getCanonicalName() + ":" + name + " from " + extraPath + "...");
                     in = closer.register(new BufferedInputStream(closer.register(new FileInputStream(extraPath))));
-                    prop.load(in);
+                    prop.load(new InputStreamReader(in, StandardCharsets.UTF_8));
                 }
             } else {
                 throw new FileNotFoundException();

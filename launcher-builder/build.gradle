@@ -11,7 +11,7 @@ application {
 
 dependencies {
     api project(':launcher')
-    implementation 'org.apache.commons:commons-compress:1.21'
+    implementation 'org.apache.commons:commons-compress:1.26.2'
 }
 
 shadowJar {

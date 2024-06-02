@@ -7,10 +7,7 @@
 package com.skcraft.concurrency;
 
 import com.google.common.base.Function;
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.*;
 
 import java.util.concurrent.*;
 
@@ -56,7 +53,7 @@ class DeferredImpl<I> implements Deferred<I> {
                 task.run();
                 return null;
             }
-        }), defaultExecutor);
+        }, MoreExecutors.directExecutor()), defaultExecutor);
     }
 
     @Override
