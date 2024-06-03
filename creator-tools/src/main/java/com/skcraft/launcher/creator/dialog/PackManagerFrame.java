@@ -157,7 +157,7 @@ public class PackManagerFrame extends JFrame {
         menu.addSeparator();
         menu.add(checkProblemsMenuItem);
 
-        menu = new JMenu("Test");
+        menu = new JMenu(SharedLocale.tr("menu.test"));
         menu.setMargin(menuInset);
         menu.setMnemonic('t');
         menuBar.add(menu);
