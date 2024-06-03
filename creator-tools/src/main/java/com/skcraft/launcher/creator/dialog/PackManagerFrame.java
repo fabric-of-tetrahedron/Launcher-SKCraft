@@ -12,6 +12,7 @@ import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.swing.DefaultTable;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TableColumnAdjuster;
+import com.skcraft.launcher.util.SharedLocale;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 
@@ -131,7 +132,7 @@ public class PackManagerFrame extends JFrame {
 
         Insets menuInset = new Insets(2, 2, 2, 2);
 
-        menu = new JMenu("File");
+        menu = new JMenu(SharedLocale.tr("menu.file"));
         menu.setMargin(menuInset);
         menu.setMnemonic('f');
         menuBar.add(menu);
@@ -147,7 +148,7 @@ public class PackManagerFrame extends JFrame {
         menu.addSeparator();
         menu.add(quitMenuItem);
 
-        menu = new JMenu("Edit");
+        menu = new JMenu(SharedLocale.tr("menu.edit"));
         menu.setMargin(menuInset);
         menu.setMnemonic('e');
         menuBar.add(menu);

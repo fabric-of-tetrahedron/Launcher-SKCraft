@@ -485,12 +485,7 @@ public final class Launcher {
                     SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-                    FlatLightLaf.setup();
-                    Font font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
-                    font = font.deriveFont(20f);
-                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-                    ge.registerFont(font);
-                    setUIFont(new FontUIResource(font));
+                    uiStyle(20f);
 
                     launcher.showLauncherWindow();
                 } catch (Throwable t) {
@@ -501,6 +496,15 @@ public final class Launcher {
             }
         });
 
+    }
+
+    public static void uiStyle(float fontSize) throws FontFormatException, IOException {
+        FlatLightLaf.setup();
+        Font font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
+        font = font.deriveFont(fontSize);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+        setUIFont(new FontUIResource(font));
     }
 
     public static void setUIFont(FontUIResource f) {

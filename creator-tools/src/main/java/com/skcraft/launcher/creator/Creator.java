@@ -17,6 +17,7 @@ import com.skcraft.launcher.creator.model.creator.RecentEntry;
 import com.skcraft.launcher.creator.model.creator.Workspace;
 import com.skcraft.launcher.persistence.Persistence;
 import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.util.SharedLocale;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -27,9 +28,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executors;
 
 import static com.skcraft.launcher.Launcher.setUIFont;
+import static com.skcraft.launcher.Launcher.uiStyle;
 
 public class Creator {
 
@@ -38,6 +41,8 @@ public class Creator {
     @Getter private final ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
 
     public Creator() {
+        SharedLocale.loadBundle("com.skcraft.launcher.creator.lang.Creator", Locale.getDefault());
+
         this.dataDir = getAppDataDir();
         this.config = Persistence.load(new File(dataDir, "config.json"), CreatorConfig.class);
 
@@ -83,19 +88,13 @@ public class Creator {
             SwingHelper.setSwingProperties("Modpack Creator");
             SwingHelper.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-            FlatLightLaf.setup();
-            Font font = null;
             try {
-                font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
+                uiStyle(14f);
             } catch (FontFormatException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            font = font.deriveFont(14f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(font);
-            setUIFont(new FontUIResource(font));
 
             try {
                 creator.showWelcome();
