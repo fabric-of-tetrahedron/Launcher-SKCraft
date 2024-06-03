@@ -8,6 +8,7 @@ package com.skcraft.launcher;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.google.common.base.Strings;
 import com.google.common.base.Supplier;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -31,6 +32,7 @@ import lombok.extern.java.Log;
 import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.FileFilter;
@@ -39,6 +41,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.Executors;
@@ -56,16 +59,27 @@ public final class Launcher {
 
     @Getter
     private final ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
-    @Getter @Setter private Supplier<Window> mainWindowSupplier = new DefaultLauncherSupplier(this);
-    @Getter private final File baseDir;
-    @Getter private final Properties properties;
-    @Getter private final InstanceList instances;
-    @Getter private final Configuration config;
-    @Getter private final AccountList accounts;
-    @Getter private final AssetsRoot assets;
-    @Getter private final LaunchSupervisor launchSupervisor = new LaunchSupervisor(this);
-    @Getter private final UpdateManager updateManager = new UpdateManager(this);
-    @Getter private final InstanceTasks instanceTasks = new InstanceTasks(this);
+    @Getter
+    @Setter
+    private Supplier<Window> mainWindowSupplier = new DefaultLauncherSupplier(this);
+    @Getter
+    private final File baseDir;
+    @Getter
+    private final Properties properties;
+    @Getter
+    private final InstanceList instances;
+    @Getter
+    private final Configuration config;
+    @Getter
+    private final AccountList accounts;
+    @Getter
+    private final AssetsRoot assets;
+    @Getter
+    private final LaunchSupervisor launchSupervisor = new LaunchSupervisor(this);
+    @Getter
+    private final UpdateManager updateManager = new UpdateManager(this);
+    @Getter
+    private final InstanceTasks instanceTasks = new InstanceTasks(this);
     private final Environment env = Environment.getInstance();
 
     /**
@@ -82,7 +96,7 @@ public final class Launcher {
      * Create a new launcher instance with the given base and configuration
      * directories.
      *
-     * @param baseDir the base directory
+     * @param baseDir   the base directory
      * @param configDir the config directory
      * @throws java.io.IOException on load error
      */
@@ -289,6 +303,7 @@ public final class Launcher {
 
     /**
      * Fetch a library file.
+     *
      * @param library Library to fetch
      * @return File pointing to the library on disk.
      */
@@ -369,7 +384,7 @@ public final class Launcher {
     /**
      * Convenient method to fetch a property.
      *
-     * @param key the key
+     * @param key  the key
      * @param args formatting arguments
      * @return the property
      */
@@ -390,7 +405,7 @@ public final class Launcher {
     /**
      * Convenient method to fetch a property.
      *
-     * @param key the key
+     * @param key  the key
      * @param args formatting arguments
      * @return the property
      */
@@ -414,7 +429,7 @@ public final class Launcher {
      * @param args the arguments
      * @return the launcher
      * @throws ParameterException thrown on a bad parameter
-     * @throws IOException throw on an I/O error
+     * @throws IOException        throw on an I/O error
      */
     public static Launcher createFromArguments(String[] args) throws ParameterException, IOException {
         LauncherArguments options = new LauncherArguments();
@@ -457,6 +472,14 @@ public final class Launcher {
                     Launcher launcher = createFromArguments(args);
                     SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+                    FlatLightLaf.setup();
+                    Font font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
+                    font = font.deriveFont(20f);
+                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                    ge.registerFont(font);
+                    setUIFont(new FontUIResource(font));
+
                     launcher.showLauncherWindow();
                 } catch (Throwable t) {
                     log.log(Level.WARNING, "Load failure", t);
@@ -466,6 +489,16 @@ public final class Launcher {
             }
         });
 
+    }
+
+    public static void setUIFont(FontUIResource f) {
+        Enumeration keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource)
+                UIManager.put(key, f);
+        }
     }
 
 }

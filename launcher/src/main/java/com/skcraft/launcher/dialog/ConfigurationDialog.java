@@ -87,7 +87,7 @@ public class ConfigurationDialog extends JDialog {
         setTitle(SharedLocale.tr("options.title"));
         initComponents(); // Must be called after jvmRuntime model setup
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(new Dimension(400, 500));
+        setSize(new Dimension(600, 600));
         setResizable(false);
         setLocationRelativeTo(owner);
 
