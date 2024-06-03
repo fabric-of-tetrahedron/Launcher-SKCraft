@@ -6,6 +6,7 @@
 
 package com.skcraft.launcher.creator;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.skcraft.launcher.Launcher;
@@ -20,10 +21,15 @@ import lombok.Getter;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executors;
+
+import static com.skcraft.launcher.Launcher.setUIFont;
 
 public class Creator {
 
@@ -76,6 +82,20 @@ public class Creator {
         SwingUtilities.invokeAndWait(() -> {
             SwingHelper.setSwingProperties("Modpack Creator");
             SwingHelper.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+            FlatLightLaf.setup();
+            Font font = null;
+            try {
+                font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
+            } catch (FontFormatException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            font = font.deriveFont(14f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            setUIFont(new FontUIResource(font));
 
             try {
                 creator.showWelcome();
