@@ -22,42 +22,42 @@ import java.awt.event.KeyEvent;
 
 public class PackManagerFrame extends JFrame {
 
-    @Getter private final JButton newPackButton = new JButton("New Pack", SwingHelper.createIcon(Creator.class, "new.png"));
-    @Getter private final JButton importButton = new JButton("Add Existing", SwingHelper.createIcon(Creator.class, "import.png"));
-    @Getter private final JButton editConfigButton = new JButton("Modify", SwingHelper.createIcon(Creator.class, "edit.png"));
-    @Getter private final JButton openFolderButton = new JButton("Open", SwingHelper.createIcon(Creator.class, "open_folder.png"));
-    @Getter private final JButton checkProblemsButton = new JButton("Check", SwingHelper.createIcon(Creator.class, "check.png"));
-    @Getter private final JButton testButton = new JButton("Test", SwingHelper.createIcon(Creator.class, "test.png"));
-    @Getter private final JButton buildButton = new JButton("Build", SwingHelper.createIcon(Creator.class, "build.png"));
+    @Getter private final JButton newPackButton = new JButton(SharedLocale.tr("menu.bar.newPack"), SwingHelper.createIcon(Creator.class, "new.png"));
+    @Getter private final JButton importButton = new JButton(SharedLocale.tr("menu.bar.addExisting"), SwingHelper.createIcon(Creator.class, "import.png"));
+    @Getter private final JButton editConfigButton = new JButton(SharedLocale.tr("menu.bar.modify"), SwingHelper.createIcon(Creator.class, "edit.png"));
+    @Getter private final JButton openFolderButton = new JButton(SharedLocale.tr("menu.bar.open"), SwingHelper.createIcon(Creator.class, "open_folder.png"));
+    @Getter private final JButton checkProblemsButton = new JButton(SharedLocale.tr("menu.bar.check"), SwingHelper.createIcon(Creator.class, "check.png"));
+    @Getter private final JButton testButton = new JButton(SharedLocale.tr("menu.bar.test"), SwingHelper.createIcon(Creator.class, "test.png"));
+    @Getter private final JButton buildButton = new JButton(SharedLocale.tr("menu.bar.build"), SwingHelper.createIcon(Creator.class, "build.png"));
 
-    @Getter private final JMenuItem newPackMenuItem = new JMenuItem("New Pack...");
-    @Getter private final JMenuItem newPackAtLocationMenuItem = new JMenuItem("New Pack at Location...");
-    @Getter private final JMenuItem importPackMenuItem = new JMenuItem("Add Existing Pack...");
-    @Getter private final JMenuItem changePackLocationMenuItem = new JMenuItem("Change Pack Location...");
-    @Getter private final JMenuItem refreshMenuItem = new JMenuItem("Reload Workspace");
-    @Getter private final JMenuItem removePackItem = new JMenuItem("Remove Pack...");
-    @Getter private final JMenuItem deletePackItem = new JMenuItem("Delete Pack Forever...");
-    @Getter private final JMenuItem quitMenuItem = new JMenuItem("Exit");
-    @Getter private final JMenuItem editConfigMenuItem = new JMenuItem("Edit modpack.json...");
-    @Getter private final JMenuItem openFolderMenuItem = new JMenuItem("Open Directory");
-    @Getter private final JMenuItem checkProblemsMenuItem = new JMenuItem("Scan for Problems...");
-    @Getter private final JMenuItem testMenuItem = new JMenuItem("Test");
-    @Getter private final JMenuItem testOnlineMenuItem = new JMenuItem("Test Online");
-    @Getter private final JMenuItem optionsMenuItem = new JMenuItem("Test Launcher Options...");
-    @Getter private final JMenuItem instanceOptionsMenuItem = new JMenuItem("Test Instance Options...");
-    @Getter private final JMenuItem clearInstanceMenuItem = new JMenuItem("Delete Test Launcher Instances");
-    @Getter private final JMenuItem clearWebRootMenuItem = new JMenuItem("Empty Test Web Server");
-    @Getter private final JMenuItem buildMenuItem = new JMenuItem("Build Pack...");
-    @Getter private final JMenuItem deployServerMenuItem = new JMenuItem("Deploy Server...");
-    @Getter private final JMenuItem generatePackagesMenuItem = new JMenuItem("Generate packages.json...");
-    @Getter private final JMenuItem openOutputFolderMenuItem = new JMenuItem("Open Upload Folder");
-    @Getter private final JMenuItem versionCheckMenuItem = new JMenuItem("Check for Mod Updates");
-    @Getter private final JMenuItem openWorkspaceFolderMenuItem = new JMenuItem("Open Workspace Folder");
-    @Getter private final JMenuItem openLauncherFolderMenuItem = new JMenuItem("Open Test Launcher Folder");
-    @Getter private final JMenuItem openWebRootMenuItem = new JMenuItem("Open Test Web Server Folder");
-    @Getter private final JMenuItem openConsoleMenuItem = new JMenuItem("Open Console");
-    @Getter private final JMenuItem docsMenuItem = new JMenuItem("Documentation");
-    @Getter private final JMenuItem aboutMenuItem = new JMenuItem("About");
+    @Getter private final JMenuItem newPackMenuItem = new JMenuItem(SharedLocale.tr("menu.item.newPack"));
+    @Getter private final JMenuItem newPackAtLocationMenuItem = new JMenuItem(SharedLocale.tr("menu.item.newPackAtLocation"));
+    @Getter private final JMenuItem importPackMenuItem = new JMenuItem(SharedLocale.tr("menu.item.addExistingPack"));
+    @Getter private final JMenuItem changePackLocationMenuItem = new JMenuItem(SharedLocale.tr("menu.item.changePackLocation"));
+    @Getter private final JMenuItem refreshMenuItem = new JMenuItem(SharedLocale.tr("menu.item.reloadWorkspace"));
+    @Getter private final JMenuItem removePackItem = new JMenuItem(SharedLocale.tr("menu.item.removePack"));
+    @Getter private final JMenuItem deletePackItem = new JMenuItem(SharedLocale.tr("menu.item.deletePackForever"));
+    @Getter private final JMenuItem quitMenuItem = new JMenuItem(SharedLocale.tr("menu.item.exit"));
+    @Getter private final JMenuItem editConfigMenuItem = new JMenuItem(SharedLocale.tr("menu.item.editModpackJson"));
+    @Getter private final JMenuItem openFolderMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openDirectory"));
+    @Getter private final JMenuItem checkProblemsMenuItem = new JMenuItem(SharedLocale.tr("menu.item.scanForProblems"));
+    @Getter private final JMenuItem testMenuItem = new JMenuItem(SharedLocale.tr("menu.item.test"));
+    @Getter private final JMenuItem testOnlineMenuItem = new JMenuItem(SharedLocale.tr("menu.item.testOnline"));
+    @Getter private final JMenuItem optionsMenuItem = new JMenuItem(SharedLocale.tr("menu.item.testLauncherOptions"));
+    @Getter private final JMenuItem instanceOptionsMenuItem = new JMenuItem(SharedLocale.tr("menu.item.testInstanceOptions"));
+    @Getter private final JMenuItem clearInstanceMenuItem = new JMenuItem(SharedLocale.tr("menu.item.deleteTestLauncherInstances"));
+    @Getter private final JMenuItem clearWebRootMenuItem = new JMenuItem(SharedLocale.tr("menu.item.emptyTestWebServer"));
+    @Getter private final JMenuItem buildMenuItem = new JMenuItem(SharedLocale.tr("menu.item.buildPack"));
+    @Getter private final JMenuItem deployServerMenuItem = new JMenuItem(SharedLocale.tr("menu.item.deployServer"));
+    @Getter private final JMenuItem generatePackagesMenuItem = new JMenuItem(SharedLocale.tr("menu.item.generatePackagesJson"));
+    @Getter private final JMenuItem openOutputFolderMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openUploadFolder"));
+    @Getter private final JMenuItem versionCheckMenuItem = new JMenuItem(SharedLocale.tr("menu.item.checkForModUpdates"));
+    @Getter private final JMenuItem openWorkspaceFolderMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openWorkspaceFolder"));
+    @Getter private final JMenuItem openLauncherFolderMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openTestLauncherFolder"));
+    @Getter private final JMenuItem openWebRootMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openTestWebServerFolder"));
+    @Getter private final JMenuItem openConsoleMenuItem = new JMenuItem(SharedLocale.tr("menu.item.openConsole"));
+    @Getter private final JMenuItem docsMenuItem = new JMenuItem(SharedLocale.tr("menu.item.documentation"));
+    @Getter private final JMenuItem aboutMenuItem = new JMenuItem(SharedLocale.tr("menu.item.about"));
 
     @Getter private final JTable packTable = new DefaultTable();
 
@@ -170,7 +170,7 @@ public class PackManagerFrame extends JFrame {
         menu.add(clearInstanceMenuItem);
         menu.add(clearWebRootMenuItem);
 
-        menu = new JMenu("Build");
+        menu = new JMenu(SharedLocale.tr("menu.build"));
         menu.setMargin(menuInset);
         menu.setMnemonic('b');
         menuBar.add(menu);
@@ -181,7 +181,7 @@ public class PackManagerFrame extends JFrame {
         menu.addSeparator();
         menu.add(openOutputFolderMenuItem);
 
-        menu = new JMenu("Tools");
+        menu = new JMenu(SharedLocale.tr("menu.tools"));
         menu.setMargin(menuInset);
         menu.setMnemonic('t');
         menuBar.add(menu);
@@ -193,7 +193,7 @@ public class PackManagerFrame extends JFrame {
         menu.addSeparator();
         menu.add(openConsoleMenuItem);
 
-        menu = new JMenu("Help");
+        menu = new JMenu(SharedLocale.tr("menu.help"));
         menu.setMargin(menuInset);
         menu.setMnemonic('h');
         menuBar.add(menu);
