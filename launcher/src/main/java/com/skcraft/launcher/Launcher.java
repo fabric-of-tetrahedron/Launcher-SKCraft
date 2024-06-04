@@ -485,7 +485,7 @@ public final class Launcher {
                     SwingHelper.setSwingProperties(tr("launcher.appTitle", launcher.getVersion()));
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-                    uiStyle(20f);
+                    uiStyle(14f);
 
                     launcher.showLauncherWindow();
                 } catch (Throwable t) {

@@ -7,6 +7,7 @@
 package com.skcraft.launcher.dialog;
 
 import com.skcraft.launcher.swing.ActionListeners;
+import com.skcraft.launcher.util.SharedLocale;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -29,7 +30,7 @@ public class AboutDialog extends JDialog {
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("insets dialog"));
 
-        container.add(new JLabel("<html>Licensed under GNU General Public License, version 3."), "wrap, gapbottom unrel");
+        container.add(new JLabel(SharedLocale.tr("about.label.license")), "wrap, gapbottom unrel");
         container.add(new JLabel("<html>You are using SKCraft Launcher, an open-source customizable<br>" +
                 "launcher platform that anyone can use."), "wrap, gapbottom unrel");
         container.add(new JLabel("<html>SKCraft does not necessarily endorse the version of<br>" +
