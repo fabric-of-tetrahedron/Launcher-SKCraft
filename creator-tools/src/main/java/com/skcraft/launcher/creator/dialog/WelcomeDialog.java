@@ -10,6 +10,7 @@ import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.creator.model.creator.RecentEntry;
 import com.skcraft.launcher.creator.swing.BorderCellRenderer;
 import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.util.SharedLocale;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
 
@@ -19,11 +20,11 @@ import java.awt.event.KeyEvent;
 
 public class WelcomeDialog extends JFrame {
 
-    @Getter private final JButton newButton = new JButton("New Workspace...", SwingHelper.createIcon(Creator.class, "new.png"));
-    @Getter private final JButton openButton = new JButton("Open Workspace...", SwingHelper.createIcon(Creator.class, "open_folder.png"));
-    @Getter private final JButton helpButton = new JButton("Help");
-    @Getter private final JButton aboutButton = new JButton("About");
-    @Getter private final JButton quitButton = new JButton("Quit");
+    @Getter private final JButton newButton = new JButton(SharedLocale.tr("welcome.button.newWorkspace"), SwingHelper.createIcon(Creator.class, "new.png"));
+    @Getter private final JButton openButton = new JButton(SharedLocale.tr("welcome.button.openWorkspace"), SwingHelper.createIcon(Creator.class, "open_folder.png"));
+    @Getter private final JButton helpButton = new JButton(SharedLocale.tr("welcome.button.help"));
+    @Getter private final JButton aboutButton = new JButton(SharedLocale.tr("welcome.button.about"));
+    @Getter private final JButton quitButton = new JButton(SharedLocale.tr("welcome.button.quit"));
     @Getter private final JList<RecentEntry> recentList = new JList<>();
 
     public WelcomeDialog() {

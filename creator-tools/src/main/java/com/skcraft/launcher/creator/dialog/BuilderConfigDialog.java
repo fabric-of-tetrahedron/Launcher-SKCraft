@@ -16,6 +16,7 @@ import com.skcraft.launcher.creator.model.swing.FeaturePatternTableModel;
 import com.skcraft.launcher.model.modpack.LaunchModifier;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TextFieldPopupMenu;
+import com.skcraft.launcher.util.SharedLocale;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -68,10 +69,10 @@ public class BuilderConfigDialog extends JDialog {
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("fill, insets dialog"));
 
-        tabbedPane.addTab("Modpack", null, createMainPanel());
-        tabbedPane.addTab("Launch", null, createLaunchPanel());
-        tabbedPane.addTab("User Files", null, createUserFilesPanel());
-        tabbedPane.addTab("Optional Features", null, createFeaturesPanel());
+        tabbedPane.addTab(SharedLocale.tr("builder.tab.modpack"), null, createMainPanel());
+        tabbedPane.addTab(SharedLocale.tr("builder.tab.launch"), null, createLaunchPanel());
+        tabbedPane.addTab(SharedLocale.tr("builder.tab.userFiles"), null, createUserFilesPanel());
+        tabbedPane.addTab(SharedLocale.tr("builder.tab.optionalFeatures"), null, createFeaturesPanel());
 
         container.add(tabbedPane, "span, grow, gapbottom unrel");
 

@@ -9,6 +9,7 @@ package com.skcraft.launcher.creator.dialog;
 import com.skcraft.launcher.LauncherUtils;
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.util.SharedLocale;
 import lombok.extern.java.Log;
 import net.miginfocom.swing.MigLayout;
 
@@ -16,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -47,13 +49,13 @@ public class AboutDialog extends JDialog {
         container.setLayout(new MigLayout("insets dialog"));
 
         container.add(new JLabel(SwingHelper.createIcon(Creator.class, "about_header.png")), "dock north");
-        container.add(new JLabel("<html>Version " + version), "wrap");
-        container.add(new JLabel("<html>Licensed under GNU Lesser General Public License, version 3."), "wrap, gapbottom unrel");
-        container.add(new JLabel("<html>Created by the SKCraft team. Visit our website!"), "wrap, gapbottom unrel");
+        container.add(new JLabel(SharedLocale.tr("about.label.version", version)), "wrap");
+        container.add(new JLabel(SharedLocale.tr("about.label.license")), "wrap, gapbottom unrel");
+        container.add(new JLabel(SharedLocale.tr("about.label.createdBy")), "wrap, gapbottom unrel");
 
-        JButton okButton = new JButton("OK");
-        JButton sourceCodeButton = new JButton("Source Code");
-        JButton skCraftButton = new JButton("Website");
+        JButton okButton = new JButton(SharedLocale.tr("about.button.ok"));
+        JButton sourceCodeButton = new JButton(SharedLocale.tr("about.button.sourceCode"));
+        JButton skCraftButton = new JButton(SharedLocale.tr("about.button.website"));
 
         container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
         container.add(skCraftButton, "sizegroup bttn");
