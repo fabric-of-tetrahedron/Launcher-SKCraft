@@ -11,6 +11,7 @@ import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.builder.BuilderOptions;
 import com.skcraft.launcher.creator.model.creator.Pack;
 import com.skcraft.launcher.creator.model.creator.Problem;
+import com.skcraft.launcher.util.SharedLocale;
 
 import java.io.File;
 import java.util.List;
@@ -39,39 +40,27 @@ public class ProblemChecker implements Callable<List<Problem>>, ProgressObservab
         String[] files;
 
         if (new File(packDir, "_CLIENT").exists()) {
-            problems.add(new Problem("Root _CLIENT", "There's a _CLIENT folder that's not in " +
-                    "the src/ folder. Only files that are in src/ will actually appear in the " +
-                    "modpack, so you probably intended to put _CLIENT in src/."));
+            problems.add(new Problem(SharedLocale.tr("problem.root_client"), SharedLocale.tr("problem.root_client_message")));
         }
 
         if (new File(packDir, "_SERVER").exists()) {
-            problems.add(new Problem("Root _SERVER", "There's a _SERVER folder that's not in " +
-                    "the src/ folder. Only files that are in src/ will actually appear in the " +
-                    "modpack, so you probably intended to put _SERVER in src/."));
+            problems.add(new Problem(SharedLocale.tr("problem.root_server"), SharedLocale.tr("problem.root_server_message")));
         }
 
         if (new File(packDir, "mods").exists()) {
-            problems.add(new Problem("Root mods", "There's a mods folder that's not in " +
-                    "the src/ folder. Only files that are in src/ will actually appear in the " +
-                    "modpack."));
+            problems.add(new Problem(SharedLocale.tr("problem.root_mods"), SharedLocale.tr("problem.root_mods_message")));
         }
 
         if (new File(packDir, "config").exists()) {
-            problems.add(new Problem("Root mods", "There's a config folder that's not in " +
-                    "the src/ folder. Only files that are in src/ will actually appear in the " +
-                    "modpack."));
+            problems.add(new Problem(SharedLocale.tr("problem.root_config"), SharedLocale.tr("problem.root_config_message")));
         }
 
         if (new File(packDir, "version.json").exists()) {
-            problems.add(new Problem("Legacy version.json", "There's a version.json file in the " +
-                    "project directory. If you are upgrading your modpack from an old version " +
-                    "of the launcher, then you should be able to delete version.json as it is " +
-                    "no longer needed to create a modpack. If you are intentionally overriding the " +
-                    "Minecraft version manifest, then ignore this warning."));
+            problems.add(new Problem(SharedLocale.tr("problem.legacy_version"), SharedLocale.tr("problem.legacy_version_message")));
         }
 
         if (hasMods && !hasLoaders) {
-            problems.add(new Problem("No Loaders", "There appears to be a mods/ folder but there's no mod loaders in loaders/."));
+            problems.add(new Problem(SharedLocale.tr("problem.no_loaders"), SharedLocale.tr("problem.no_loaders_message")));
         }
 
         return problems;

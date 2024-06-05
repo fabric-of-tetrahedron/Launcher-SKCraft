@@ -40,6 +40,7 @@ import com.skcraft.launcher.persistence.Persistence;
 import com.skcraft.launcher.swing.PopupMouseAdapter;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.MorePaths;
+import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
 import lombok.Getter;
 
@@ -646,53 +647,54 @@ public class PackManagerController {
         JPopupMenu popup = new JPopupMenu();
         JMenuItem menuItem;
 
-        menuItem = new JMenuItem("Edit modpack.json...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.edit_modpack_json"));
         menuItem.addActionListener(e -> frame.getEditConfigMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Open Directory");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.open_directory"));
         menuItem.addActionListener(e -> frame.getOpenFolderMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Check for Problems");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.check_for_problems"));
         menuItem.addActionListener(e -> frame.getCheckProblemsMenuItem().doClick());
         popup.add(menuItem);
 
         popup.addSeparator();
 
-        menuItem = new JMenuItem("Test");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.test"));
         menuItem.addActionListener(e -> frame.getTestMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Test Online");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.test_online"));
         menuItem.addActionListener(e -> frame.getTestOnlineMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Instance settings...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.instance_settings"));
         menuItem.addActionListener(e -> frame.getInstanceOptionsMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Build...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.build"));
         menuItem.addActionListener(e -> frame.getBuildMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Deploy Server...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.deploy_server"));
         menuItem.addActionListener(e -> frame.getDeployServerMenuItem().doClick());
         popup.add(menuItem);
 
         popup.addSeparator();
 
-        menuItem = new JMenuItem("Change Location...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.change_location"));
         menuItem.addActionListener(e -> frame.getChangePackLocationMenuItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Remove...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.remove"));
         menuItem.addActionListener(e -> frame.getRemovePackItem().doClick());
         popup.add(menuItem);
 
-        menuItem = new JMenuItem("Delete Forever...");
+        menuItem = new JMenuItem(SharedLocale.tr("menu.popup.delete_forever"));
         menuItem.addActionListener(e -> frame.getDeletePackItem().doClick());
         popup.add(menuItem);
+
 
         popup.show(component, x, y);
     }
