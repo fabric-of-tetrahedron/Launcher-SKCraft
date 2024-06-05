@@ -8,6 +8,7 @@ package com.skcraft.launcher;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.google.common.base.Strings;
 import com.google.common.base.Supplier;
@@ -198,7 +199,7 @@ public final class Launcher {
     public LoginService getLoginService(UserType type) {
         if (type == UserType.MICROSOFT) {
             return getMicrosoftLogin();
-        } else if (type == UserType.MOJANG){
+        } else if (type == UserType.MOJANG) {
             return getYggdrasil();
         } else if (type == UserType.LEGACY) {
             return getOfflineLogin();
@@ -499,7 +500,12 @@ public final class Launcher {
     }
 
     public static void uiStyle(float fontSize) throws FontFormatException, IOException {
-        FlatLightLaf.setup();
+        uiStyle(false, fontSize);
+    }
+
+    public static void uiStyle(boolean darkMode, float fontSize) throws FontFormatException, IOException {
+        if (darkMode) FlatDarkLaf.setup();
+        else FlatLightLaf.setup();
         Font font = Font.createFont(Font.TRUETYPE_FONT, Launcher.class.getResourceAsStream("/com/skcraft/launcher/MapleMono-SC-NF-Regular.ttf"));
         font = font.deriveFont(fontSize);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

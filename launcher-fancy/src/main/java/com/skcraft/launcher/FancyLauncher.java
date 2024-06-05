@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.logging.Level;
 
+import static com.skcraft.launcher.Launcher.uiStyle;
+
 @Log
 public class FancyLauncher {
 
@@ -35,6 +37,8 @@ public class FancyLauncher {
                     if (!SwingHelper.setLookAndFeel("com.skcraft.launcher.skin.LauncherLookAndFeel")) {
                         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     }
+
+                    uiStyle(true, 14f);
 
                     Launcher launcher = Launcher.createFromArguments(args);
                     launcher.setMainWindowSupplier(new CustomWindowSupplier(launcher));
